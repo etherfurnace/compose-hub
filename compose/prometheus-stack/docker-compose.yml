@@ -1,0 +1,31 @@
+version: '3.1'
+services:
+  prometheus:
+    image: bitnami/prometheus
+    volumes:
+      - prometheus-data:/opt/bitnami/prometheus/data
+      - ./config/prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml
+    ports:
+      - 9090:9090
+    depends_on:
+      - alertmanager
+    links:
+      - alertmanager
+      - pushgateway      
+
+  alertmanager:
+    image: prom/alertmanager
+    volumes:
+      - ./config/alertmanager.yml:/opt/bitnami/alertmanager/conf/config.yml
+      - alertmanager-data:/opt/bitnami/data
+    ports:
+      - 9093:9093
+
+  pushgateway:
+    image: bitnami/pushgateway
+    ports:
+      - 9091:9091    
+
+volumes:
+  alertmanager-data:
+  prometheus-data:
