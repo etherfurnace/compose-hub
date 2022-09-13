@@ -1,0 +1,12 @@
+version: "3.3"
+services:
+  openresty:
+    image: "bitnami/openresty:1.21.4-1"
+    container_name: "openresty"
+    restart: always
+    ports:
+      - 80:8080
+      - 443:8443
+    volumes:
+      - ${PWD}/config/nginx.conf:/opt/bitnami/openresty/nginx/conf/nginx.conf:ro
+      - ${PWD}/config/site-enable:/opt/bitnami/openresty/nginx/conf/site-enable
