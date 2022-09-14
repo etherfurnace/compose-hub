@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  redis:
+    image: bitnami/redis
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/bitnami/redis/data
+    environment:
+      - REDIS_PASSWORD=password
+
+volumes:
+  redis-data:
