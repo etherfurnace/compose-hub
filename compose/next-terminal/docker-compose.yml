@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  next-terminal:
+    image: ccr.ccs.tencentyun.com/megalab/next-terminal
+    container_name: next-terminal
+    ports:
+      - 20005:8088
+    volumes:
+      - next-terminal-data:/usr/local/next-terminal/data
+  guacd:
+    image: ccr.ccs.tencentyun.com/megalab/guacd:latest
+    container_name: next-terminal-guacd
+    volumes:
+      - next-terminal-data:/usr/local/next-terminal/data
+    restart: always      
+volumes:
+  next-terminal-data:      
