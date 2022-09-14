@@ -1,0 +1,14 @@
+version: "3.0"
+services:
+  elasticsearch:
+    container_name: elastic
+    image: elasticsearch:7.17.6
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    environment:
+      # - xpack.security.enabled=false
+      - "discovery.type=single-node"
+    ports:
+      - 9200:9200
+volumes:
+  es-data:      
