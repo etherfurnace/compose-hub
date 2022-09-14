@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  datainsight:
+    image: ccr.ccs.tencentyun.com/megalab/datainsight:4.3.5
+    container_name: datainsight
+    ports:
+      - 20001:9000
+    volumes:
+      - ${PWD}/configs/graylog.conf:/products/graylog.conf:ro
