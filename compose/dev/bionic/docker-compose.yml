@@ -1,0 +1,9 @@
+---
+version: "2.1"
+services:
+  guacd:
+    image: ccr.ccs.tencentyun.com/megalab/bionics
+    container_name: bionics
+    ports:
+      - 7001:7001
+    restart: always
