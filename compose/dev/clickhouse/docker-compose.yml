@@ -1,0 +1,25 @@
+version: "3"
+services:
+    server:
+      image: yandex/clickhouse-server
+      ports:
+        - "8123:8123"
+        - "9000:9000"
+        - "9009:9009"
+      volumes:
+        # - ${PWD}/config/:/etc/clickhouse-server/
+        - clickhouse-data:/var/lib/clickhouse
+      ulimits:
+        nproc: 65535
+        nofile:
+          soft: 262144
+          hard: 262144
+      environment:
+        - CLICKHOUSE_PASSWORD=password
+        - CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1
+        - CLICKHOUSE_USER=default
+    # client:
+    #   image: yandex/clickhouse-client
+    #   command: ['--host', 'server']
+volumes:
+  clickhouse-data:    
