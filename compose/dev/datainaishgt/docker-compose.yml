@@ -1,7 +1,9 @@
 version: '3.8'
 services:
   datainsight:
-    image: ccr.ccs.tencentyun.com/megalab/datainsight:4.3.5
+    image: ccr.ccs.tencentyun.com/megalab/datainsight
+    extra_hosts:
+      datainsight.lab.cc: 10.11.25.50
     container_name: datainsight
     ports:
       - 20001:9000
