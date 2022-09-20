@@ -1,17 +1,19 @@
 version: '3.1'
 services:
   prometheus:
-    image: bitnami/prometheus
+    image: prom/prometheus
     volumes:
       - prometheus-data:/opt/bitnami/prometheus/data
-      - ./config/prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - 9090:9090
     depends_on:
       - alertmanager
     links:
       - alertmanager
-      - pushgateway      
+      - pushgateway     
+    extra_hosts:
+      yapi.lab.cc: 10.11.25.50       
 
   alertmanager:
     image: prom/alertmanager
