@@ -1,0 +1,5 @@
+# tls_server_config:
+#   cert_file: mega-ops.crt
+#   key_file: mega-ops.key
+basic_auth_users:
+  root: $2y$12$GK5Pukb6di2IpnbKjvnenuu0AW0WMdkGeIyQ69N/wMmUXRa9LZQue

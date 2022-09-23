@@ -1,0 +1,25 @@
+global:
+  scrape_interval: 15s
+  scrape_timeout: 10s
+  evaluation_interval: 15s
+
+rule_files:
+  - "/opt/bitnami/prometheus/conf/rules/*.yml"
+
+scrape_configs:
+  - job_name: 'prometheys-19.30.100.11'
+    scrape_interval: 5s 
+    static_configs:
+      - targets: ['19.30.100.11:9090']
+
+  - job_name: 'node-exporter-19.30.100.11'
+    scrape_interval: 10s 
+    # scheme: https
+    # tls_config:
+    #   ca_file: mega-ops.crt
+    basic_auth:
+          username: root
+          password: password
+    static_configs:
+      - targets: ['19.30.100.11:9100']
+      

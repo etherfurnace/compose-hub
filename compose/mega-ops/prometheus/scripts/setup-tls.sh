@@ -1,0 +1,1 @@
+openssl req -new -newkey rsa:2048 -days 365 -nodes -x509 -keyout mega-ops.key -out mega-ops.crt -subj "/C=CN/ST=GZ/L=GZ/O=MegaOps.info/CN=19.30.100.11"
