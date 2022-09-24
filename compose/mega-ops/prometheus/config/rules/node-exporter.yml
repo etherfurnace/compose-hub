@@ -1,0 +1,5 @@
+groups:
+- name: cpu-node
+  rules:
+  - record: node_cpu_seconds:sum:1min
+    expr: (1-(sum(increase(node_cpu_seconds_total{mode='idle'}[1m]))by(job,instance)) / (sum(increase(node_cpu_seconds_total[1m]))by(job,instance))) *100

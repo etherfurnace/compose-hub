@@ -7,6 +7,10 @@ rule_files:
   - "/opt/bitnami/prometheus/conf/rules/*.yml"
 
 scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets: ['127.0.0.1:9090']
+
   - job_name: 'prometheys-19.30.100.11'
     scrape_interval: 5s 
     static_configs:
