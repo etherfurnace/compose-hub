@@ -1,5 +1,17 @@
 version: '3'
 services:
+  consul-template:
+    image: hashicorp/consul-template
+    container_name: "consul-template"
+    environment:
+      - ZONE=default
+      - CONSUL_ADDR=19.30.100.11:8500
+    networks:
+      - mega-ops
+    volumes:
+     - "./config/:/opt/bitnami/prometheus/conf/"
+    command: consul-template -config /opt/bitnami/prometheus/conf/template/prometheus-template.hcl -config /opt/bitnami/prometheus/conf/template/record-rule-template.hcl -config /opt/bitnami/prometheus/conf/template/alert-rule-template.hcl
+
   prometheus:
     image: bitnami/prometheus
     volumes:
@@ -8,22 +20,14 @@ services:
     networks:
       - mega-ops
     ports:
-      - 9090:9090
+      - 9090:9090  
     command:
       - '--config.file=/opt/bitnami/prometheus/conf/prometheus.yml'
       - '--storage.tsdb.retention.time=10d'
       - '--storage.tsdb.retention.size=1GB'
       - '--web.enable-admin-api'
       - '--web.enable-lifecycle'
- 
-  consul-template:
-    image: hashicorp/consul-template
-    container_name: "consul-template"
-    networks:
-      - mega-ops
-    volumes:
-     - "./config/:/opt/bitnami/prometheus/conf/"
-    command: consul-template -config /opt/bitnami/prometheus/conf/template/prometheus-template.hcl -config /opt/bitnami/prometheus/conf/template/record-rule-template.hcl
+
 volumes:
   prometheus-data:
 

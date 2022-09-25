@@ -1,0 +1,23 @@
+version: "3"
+services:
+    node-exporter:
+        image: bitnami/node-exporter
+        container_name: node-exporter
+        restart: always
+        ports:
+            - "9100:9100"
+        volumes:
+            - ./config/config.yml:/opt/bitnami/prometheus/conf/config.yml
+        command:
+            - '--web.config=/opt/bitnami/prometheus/conf/config.yml'
+
+    blackbox-exporter:
+        image: bitnami/blackbox-exporter
+        container_name: blackbox-exporter
+        restart: always
+        ports:
+            - "9115:9115"
+        volumes:
+            - ./config/blackbox-config.yml:/opt/bitnami/blackbox-exporter/conf/config.yml:ro
+        # command:
+            # - '--web.config=/opt/bitnami/prometheus/conf/config.yml'
