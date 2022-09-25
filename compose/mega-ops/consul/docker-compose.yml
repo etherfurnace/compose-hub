@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  consul:
+    image: bitnami/consul
+    volumes:
+      - consul-data:/bitnami
+    networks:
+      - mega-ops      
+    ports:
+      - '8300:8300'
+      - '8301:8301'
+      - '8301:8301/udp'
+      - '8500:8500'
+      - '8600:8600'
+      - '8600:8600/udp'
+
+volumes:
+  consul-data:
+
+networks:
+  mega-ops:

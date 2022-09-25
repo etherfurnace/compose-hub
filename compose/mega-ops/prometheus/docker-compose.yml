@@ -15,7 +15,15 @@ services:
       - '--storage.tsdb.retention.size=1GB'
       - '--web.enable-admin-api'
       - '--web.enable-lifecycle'
-      
+ 
+  consul-template:
+    image: hashicorp/consul-template
+    container_name: "consul-template"
+    networks:
+      - mega-ops
+    volumes:
+     - "./config/:/opt/bitnami/prometheus/conf/"
+    command: consul-template -config /opt/bitnami/prometheus/conf/template/prometheus-template.hcl -config /opt/bitnami/prometheus/conf/template/record-rule-template.hcl
 volumes:
   prometheus-data:
 
