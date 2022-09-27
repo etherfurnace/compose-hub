@@ -1,0 +1,15 @@
+version: '3.1'
+services:
+  mariadb:
+    image: mariadb:10.2
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    restart: always
+    volumes:
+      - mariadb-data:/var/lib/mysql
+      - ./configs/custom.cnf:/etc/mysql/conf.d/custom.cnf
+
+volumes:
+  mariadb-data:

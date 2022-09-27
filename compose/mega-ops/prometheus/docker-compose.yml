@@ -12,6 +12,17 @@ services:
      - "./config/:/opt/bitnami/prometheus/conf/"
     command: consul-template -config /opt/bitnami/prometheus/conf/template/prometheus-template.hcl -config /opt/bitnami/prometheus/conf/template/record-rule-template.hcl -config /opt/bitnami/prometheus/conf/template/alert-rule-template.hcl
 
+  blackbox-exporter:
+      image: bitnami/blackbox-exporter
+      container_name: blackbox-exporter
+      restart: always
+      ports:
+          - "9115:9115"
+      # volumes:
+          # - ./config/blackbox-config.yml:/opt/bitnami/blackbox-exporter/conf/config.yml:ro
+      # command:
+          # - '--web.config=/opt/bitnami/prometheus/conf/config.yml'
+          
   prometheus:
     image: bitnami/prometheus
     volumes:
