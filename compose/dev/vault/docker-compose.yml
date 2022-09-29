@@ -1,0 +1,11 @@
+version: '2'
+services:
+  mcba-vault:
+    container_name: mcba-vault
+    image: vault:latest
+    restart: unless-stopped
+    volumes:
+      - ./config/vault.hcl:/etc/vault.hcl
+    ports:
+      - 8200:8200
+    command: "server -config=/etc/vault.hcl"

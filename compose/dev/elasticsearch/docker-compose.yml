@@ -2,7 +2,7 @@ version: "3.0"
 services:
   elasticsearch:
     container_name: elastic
-    image: elasticsearch:7.17.6
+    image: elasticsearch:7.4.2
     volumes:
       - es-data:/usr/share/elasticsearch/data
     environment:
