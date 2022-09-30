@@ -1,3 +1,4 @@
 compose/mega-ops/prometheus/config/prometheus.yml
 compose/mega-ops/prometheus/config/record-rule.yml
 compose/mega-ops/prometheus/config/alert-rule.yml
+compose/mega-ops/alert-manager/config/alertmanager.yml
