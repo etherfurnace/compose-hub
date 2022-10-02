@@ -1,5 +1,5 @@
 {{ $zone := env "ZONE" }}
-{{- key "mega-ops/global/prometheus"}}
+{{- key "/mega-ops/global/prometheus/prometheus-config"}}
 
 scrape_configs:
     - job_name: prometheus

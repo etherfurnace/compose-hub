@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  keycloak:
+      image: bitnami/keycloak:19.0.2
+      environment:
+        KEYCLOAK_ADMIN_USER: admin
+        KEYCLOAK_ADMIN_PASSWORD: password
+        KEYCLOAK_MANAGEMENT_USER: admin
+        KEYCLOAK_MANAGEMENT_PASSWORD: password
+        KEYCLOAK_DATABASE_HOST: 19.30.100.11
+        KEYCLOAK_DATABASE_NAME: keycloak
+        KEYCLOAK_DATABASE_USER: postgres
+        KEYCLOAK_DATABASE_PASSWORD: password
+      ports:
+        - 38080:8080
