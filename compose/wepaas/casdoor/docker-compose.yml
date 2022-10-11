@@ -1,0 +1,20 @@
+version: '3.1'
+services:
+  wepaas-casdoor:
+    image: weops-lab/casdoor
+    volumes:
+      - ./config/app.conf:/codes/conf/app.conf
+    ports:
+      - 8000:8000
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.wepaas-casdoor.rule=Host(`casdoor.wepaas.cc`)"
+      - "traefik.http.routers.wepaas-casdoor.entrypoints=web"      
+      - "traefik.http.services.wepaas-casdoor.loadbalancer.server.port=8000"  
+      # - "traefik.http.services.wepaas-casdoor.loadbalancer.server.url=10.11.25.50"           
+    networks:
+      - wepaas   
+
+networks:
+  wepaas:
+    external: true      

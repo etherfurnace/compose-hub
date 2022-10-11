@@ -12,11 +12,17 @@
     forward . 114.114.114.114
     loadbalance round_robin
 
-    template IN A lab.cc {
-        match .*\.lab\.cc
+    template IN A wepaas.cc {
+        match .*\.wepaas\.cc
         answer "{{ .Name }} 60 IN A 10.11.25.50"
         fallthrough
     }    
+
+    template IN A weops.com {
+        match .*\.weops\.com
+        answer "{{ .Name }} 60 IN A 10.10.25.169"
+        fallthrough
+    }        
 
     template IN A wedoc.canway.net {
         match wedoc.canway.net
