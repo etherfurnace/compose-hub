@@ -1,0 +1,19 @@
+version: "3"
+services:
+      loki:
+        image: grafana/loki
+        ports:
+          - "3100:3100"
+        # volumes:
+        #   - ./loki-config.yaml:/etc/loki/local-config.yaml
+        # command: -config.file=/etc/loki/local-config.yaml
+        networks:
+             - wepaas 
+        volumes:
+            - loki-storage:/loki
+volumes:
+  loki-storage:
+
+networks:
+  wepaas:
+    external: true
