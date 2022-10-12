@@ -1,0 +1,24 @@
+global:
+  scrape_interval:   15s
+  evaluation_interval: 15s
+
+# alerting:
+#   alertmanagers:
+#   - static_configs:
+#     - targets:
+#       - alertmanager:9093
+
+# rule_files:
+#   - "first_rules.yml"
+
+# scrape_configs:
+#   - job_name: 'pushgateway'
+#     scrape_interval: 5s
+#     static_configs:
+#       - targets: ['pushgateway:9091']
+#     honor_labels: true
+
+# remote_write:
+#   - url: 'http://127.0.0.1:10908/api/v1/receive'
+# remote_write:
+#   - url: "http://10.11.25.50:9090/receive"

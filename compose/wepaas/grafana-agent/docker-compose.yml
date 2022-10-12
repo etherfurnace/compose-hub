@@ -1,0 +1,28 @@
+version: '3'
+services:
+  grafana-agent:
+    image: grafana/agent:v0.28.0
+    volumes:
+      - ./config/agent.yml:/etc/agent/agent.yaml
+      - grafana-agent-data:/etc/agent/data
+    networks:
+      - wepaas 
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.prometheus.rule=Host(`prometheus.wepaas.cc`)"
+      - "traefik.http.routers.prometheus.entrypoints=web"      
+      - "traefik.http.services.prometheus.loadbalancer.server.port=9090"          
+    command:
+      - '--config.file=/opt/bitnami/prometheus/conf/prometheus.yml'
+      - '--storage.tsdb.retention.time=10d'
+      - '--storage.tsdb.retention.size=1GB'
+      - '--web.enable-admin-api'
+      - '--web.enable-lifecycle'
+
+volumes:
+  grafana-agent-data:
+
+
+networks:
+  wepaas:
+    external: true

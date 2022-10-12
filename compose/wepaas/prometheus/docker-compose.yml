@@ -1,0 +1,32 @@
+version: '3'
+services:
+  prometheus:
+    image: bitnami/prometheus:2.38.0
+    volumes:
+      - prometheus-data:/opt/bitnami/prometheus/data
+      - ./config/:/opt/bitnami/prometheus/conf/
+    networks:
+      - wepaas 
+    ports:
+      - 9090:9090
+      - 20000:20000
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.prometheus.rule=Host(`prometheus.wepaas.cc`)"
+      - "traefik.http.routers.prometheus.entrypoints=web"      
+      - "traefik.http.services.prometheus.loadbalancer.server.port=9090"          
+    command:
+      - '--config.file=/opt/bitnami/prometheus/conf/prometheus.yml'
+      - '--storage.tsdb.retention.time=10d'
+      - '--storage.tsdb.retention.size=1GB'
+      - '--web.enable-admin-api'
+      - '--web.enable-lifecycle'
+      - '--web.enable-remote-write-receiver'
+
+volumes:
+  prometheus-data:
+
+
+networks:
+  wepaas:
+    external: true
