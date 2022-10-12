@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  report-service:
+    image: ccr.ccs.tencentyun.com/megalab/report-service
+    # ports:
+    #   - 20006:9000
+    networks:
+      - wepaas 
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.report.rule=Host(`report.wepaas.cc`)"
+      - "traefik.http.routers.report.entrypoints=web"      
+      - "traefik.http.services.report.loadbalancer.server.port=9000"                   
+    environment:
+      - DATABASE_URL=jdbc:mysql://10.11.25.50:3306/jimu
+      - DATABASE_PASSWORD=password
+
+networks:
+  wepaas:
+    external: true
