@@ -1,0 +1,17 @@
+version: '3'
+services:
+  pushgateway:
+    image: bitnami/pushgateway
+    # ports:
+    #   - 9091:9091    
+    networks:
+      - wepaas 
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.push-gateway.rule=Host(`push-gateway.wepaas.cc`)"
+      - "traefik.http.routers.push-gateway.entrypoints=web"      
+      - "traefik.http.services.push-gateway.loadbalancer.server.port=9091"          
+
+networks:
+  wepaas:
+    external: true

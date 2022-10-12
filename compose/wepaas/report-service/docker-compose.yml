@@ -13,7 +13,7 @@ services:
       - "traefik.http.routers.report.entrypoints=web"      
       - "traefik.http.services.report.loadbalancer.server.port=9000"                   
     environment:
-      - DATABASE_URL=jdbc:mysql://10.11.25.50:3306/jimu
+      - DATABASE_URL=jdbc:mysql://mariadb:3306/jimu
       - DATABASE_PASSWORD=password
 
 networks:

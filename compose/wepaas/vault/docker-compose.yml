@@ -1,0 +1,22 @@
+version: '2'
+services:
+  vault:
+    container_name: vault
+    image: vault:latest
+    restart: unless-stopped
+    volumes:
+      - ./config/vault.hcl:/etc/vault.hcl
+    networks:
+      - wepaas          
+    ports:
+      - 8200:8200
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.vault.rule=Host(`vault.wepaas.cc`)"
+      - "traefik.http.routers.vault.entrypoints=web"      
+      - "traefik.http.services.vault.loadbalancer.server.port=8200"              
+    command: "server -config=/etc/vault.hcl"
+
+networks:
+  wepaas:
+    external: true    

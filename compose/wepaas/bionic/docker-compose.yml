@@ -1,0 +1,21 @@
+---
+version: "2.1"
+
+networks:
+  wepaas:
+    external: true
+
+services:
+  bionics:
+    image: ccr.ccs.tencentyun.com/megalab/bionics
+    container_name: bionics
+    # ports:
+    #   - 7001:7001
+    restart: always
+    networks:
+      - wepaas 
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.bionics.rule=Host(`bionics.wepaas.cc`)"
+      - "traefik.http.routers.bionics.entrypoints=web"      
+      - "traefik.http.services.bionics.loadbalancer.server.port=7001"        

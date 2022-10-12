@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  consul:
+    image: bitnami/consul:latest
+    ports:
+      - '8300:8300'
+      - '8301:8301'
+      - '8301:8301/udp'
+      - '8500:8500'
+      - '8600:8600'
+      - '8600:8600/udp'
+    networks:
+      - wepaas        
+    volumes:
+      - consul-data:/bitnami
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.consul.rule=Host(`consul.wepaas.cc`)"
+      - "traefik.http.routers.consul.entrypoints=web"      
+      - "traefik.http.services.consul.loadbalancer.server.port=8500"           
+
+volumes:
+  consul-data:    
+
+networks:
+  wepaas:
+    external: true
