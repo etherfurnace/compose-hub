@@ -6,6 +6,7 @@ services:
       - ./config/app.conf:/codes/conf/app.conf
     ports:
       - 8000:8000
+    restart: always            
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.wepaas-casdoor.rule=Host(`casdoor.wepaas.cc`)"

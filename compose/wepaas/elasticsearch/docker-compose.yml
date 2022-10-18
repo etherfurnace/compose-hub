@@ -12,6 +12,7 @@ services:
       - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
     networks:
       - wepaas          
+    restart: always            
     ulimits:
       memlock:
         soft: -1

@@ -7,6 +7,7 @@ services:
       - 6379:6379
     networks:
       - wepaas       
+    restart: always            
     volumes:
       - redis-data:/bitnami/redis/data
     environment:

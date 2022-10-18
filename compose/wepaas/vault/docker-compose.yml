@@ -3,7 +3,7 @@ services:
   vault:
     container_name: vault
     image: vault:latest
-    restart: unless-stopped
+    restart: always
     volumes:
       - ./config/vault.hcl:/etc/vault.hcl
     networks:

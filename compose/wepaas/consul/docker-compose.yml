@@ -12,6 +12,7 @@ services:
       - '8600:8600/udp'
     networks:
       - wepaas        
+    restart: always            
     volumes:
       - consul-data:/bitnami
     labels:

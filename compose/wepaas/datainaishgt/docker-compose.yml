@@ -6,6 +6,7 @@ services:
       datainsight.wepaas.cc: 10.11.25.50
     networks:
       - wepaas       
+    restart: always            
     container_name: datainsight
     labels:
       - "traefik.enable=true"

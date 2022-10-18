@@ -1,5 +1,5 @@
 backend "mysql" {
-    address = "mysql:3306"
+    address = "mariadb:3306"
     username = "root"
     password = "password"
 }
