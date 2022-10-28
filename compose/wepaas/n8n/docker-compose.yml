@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  n8n:
+    image: n8nio/n8n
+    # ports:
+    #   - 20006:9000
+    networks:
+      - wepaas 
+    restart: always      
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.n8n.rule=Host(`n8n.wepaas.cc`)"
+      - "traefik.http.routers.n8n.entrypoints=web"      
+      - "traefik.http.services.n8n.loadbalancer.server.port=5678"               
+
+networks:
+  wepaas:
+    external: true

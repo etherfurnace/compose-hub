@@ -13,8 +13,8 @@ services:
       - "traefik.http.routers.datainsight.rule=Host(`datainsight.wepaas.cc`)"
       - "traefik.http.routers.datainsight.entrypoints=web"      
       - "traefik.http.services.datainsight.loadbalancer.server.port=9000"        
-    ports:
-      - 20001:9000
+#    ports:
+#      - 20001:9000
     volumes:
       - ${PWD}/configs/graylog.conf:/products/graylog.conf:ro
 networks:

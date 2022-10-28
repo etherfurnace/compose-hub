@@ -1,18 +1,20 @@
 version: '3.1'
 services:
   mongo:
-    image: mongo:4.2.0
+    image: mongo:4.0.3
     restart: always
     ports:
       - 27017:27017
     volumes:
       - mongo-data:/data/db
-    networks:
-      - wepaas                
+    network_mode: host
+#    networks:
+#      - wepaas                
+    command: mongod --port 27017 --replSet rs0 --dbpath /data/db
 
 volumes:
   mongo-data:
 
-networks:
-  wepaas:
-    external: true    
+#networks:
+#  wepaas:
+#    external: true    
