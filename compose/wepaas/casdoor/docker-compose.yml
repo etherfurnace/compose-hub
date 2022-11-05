@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   wepaas-casdoor:
-    image: weops-lab/casdoor
+    image: ccr.ccs.tencentyun.com/megalab/casdoor
     volumes:
       - ./config/app.conf:/codes/conf/app.conf
     ports:

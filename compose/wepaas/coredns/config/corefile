@@ -24,6 +24,13 @@
         fallthrough
     }    
 
+
+    template IN A dev.cc {
+        match .*\.dev\.cc
+        answer "{{ .Name }} 60 IN A 10.11.25.49"
+        fallthrough
+    }
+
     template IN A stress.com {
         match .*\.stress\.com
         answer "{{ .Name }} 60 IN A 192.168.163.121"
