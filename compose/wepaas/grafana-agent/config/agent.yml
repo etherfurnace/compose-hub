@@ -1,14 +1,9 @@
-server:
-  log_level: info
-prometheus:
-  wal_directory: /tmp/data
+metrics:
+  wal_directory: /tmp/wal
   global:
-    scrape_interval: 5s
+    remote_write:
+      - url: http://prometheus:9090/api/v1/write
+
 integrations:
   agent:
     enabled: true
-  node_exporter:
-    enabled: true
-
-  prometheus_remote_write:
-   - url: http://10.11.25.50:9090/api/v1/write
